@@ -31,7 +31,8 @@
             if (self.tree.length > 0) {
               let branch = self._.last(self.tree)
               branch.hasChildren = true
-              self._.find(branch.pages, { _id: basePath }).isActive = true
+              let page = self._.find(branch.pages, { _id: basePath })
+              if (page) page.isActive = true
             }
             self.tree.push({
               hasChildren: false,
@@ -72,11 +73,17 @@
       }
     },
     mounted () {
-      let basePath = window.location.pathname.slice(0, -4)
-      if (basePath.length > 1) {
-        basePath = basePath.slice(1)
-      }
+      let pathFolders = window.location.pathname.split('/');
+      pathFolders.pop()
+
+      let basePath = ''
       this.fetch(basePath)
+      pathFolders.shift()
+
+      pathFolders.forEach(folder => {
+        basePath += '/' + folder
+        this.fetch(basePath.substring(1))
+      })
     }
   }
 </script>

@@ -6,11 +6,10 @@
 }
 
 .collapsable-nav {
-  width: 300px;
+  width: 250px;
   background-color: mc('blue-grey', '900');
   color: #FFF;
   min-height: 80vh;
-  transition: all .6s ease;
   border-left: 1px solid darken(mc('blue-grey', '900'), 5%);
 
   &:last-child {
@@ -18,7 +17,7 @@
   }
 
   &.has-children {
-    width: 50px;
+    width: 40px;
     background-color: mc($primary, '500');
     border-left: 1px solid mc($primary, '700');
 
@@ -53,11 +52,11 @@
       height: 50px;
       width: 300px;
       min-width: 80vh;
-      @include prefix(transform, rotate(90deg) translate(0, -50px));
+      @include prefix(transform, rotate(90deg) translate(0, -40px));
       transform-origin: 0 0;
 
       a {
-        height: 50px;
+        height: 40px;
 
         &:nth-child(2) {
           display: none;

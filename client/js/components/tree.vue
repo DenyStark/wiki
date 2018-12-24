@@ -84,6 +84,10 @@
         basePath += '/' + folder
         this.fetch(basePath.substring(1))
       })
+
+      setTimeout(() => {
+        $('head').append('<style> .collapsable-nav{ transition: all .6s ease; } </style>')
+      }, 750)
     }
   }
 </script>

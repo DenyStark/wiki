@@ -118,11 +118,40 @@ export default {
           {
             name: 'link',
             action: (editor) => {
-              window.alert('Coming soon!')
-              // todo
+              if (!editor.codemirror.doc.somethingSelected()) {
+                return self.$store.dispatch('alert', {
+                  style: 'orange',
+                  icon: 'design_drag',
+                  msg: 'Invalid selection. Select at least 1 character.'
+                })
+              }
+              let curSel = editor.codemirror.doc.getSelections()
+              curSel = self._.map(curSel, (s) => {
+                return '[link](' + s + ')'
+              })
+              editor.codemirror.doc.replaceSelections(curSel)
             },
             className: 'nc-icon-outline ui-2_link-68',
             title: 'Insert Link'
+          },
+          {
+            name: 'blank-link',
+            action: (editor) => {
+              if (!editor.codemirror.doc.somethingSelected()) {
+                return self.$store.dispatch('alert', {
+                  style: 'orange',
+                  icon: 'design_drag',
+                  msg: 'Invalid selection. Select at least 1 character.'
+                })
+              }
+              let curSel = editor.codemirror.doc.getSelections()
+              curSel = self._.map(curSel, (s) => {
+                return '[link](blank,' + s + ')'
+              })
+              editor.codemirror.doc.replaceSelections(curSel)
+            },
+            className: 'nc-icon-outline ui-2_link-broken-73',
+            title: 'Blank Link'
           },
           {
             name: 'image',

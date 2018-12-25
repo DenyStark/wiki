@@ -87,7 +87,7 @@
 
       setTimeout(() => {
         $('head').append('<style> .collapsable-nav{ transition: all .6s ease; } </style>')
-      }, 750)
+      }, 1000)
     }
   }
 </script>

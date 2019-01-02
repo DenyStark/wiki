@@ -34,6 +34,8 @@
               let page = self._.find(branch.pages, { _id: basePath })
               if (page) page.isActive = true
             }
+
+            data.sort((a,b) => (a._id > b._id) ? 1 : ((b._id > a._id) ? -1 : 0))
             self.tree.push({
               hasChildren: false,
               pages: data

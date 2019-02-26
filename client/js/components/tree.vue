@@ -35,10 +35,27 @@
               if (page) page.isActive = true
             }
 
-            data.sort((a,b) => (a._id > b._id) ? 1 : ((b._id > a._id) ? -1 : 0))
+            let directories = []
+            let files = []
+            for (let obj of data) {
+              if (obj.isDirectory) directories.push(obj)
+              else files.push(obj)
+            }
+
+            directories.sort((a, b) => (a._id > b._id) ?
+              1 : 
+              ((b._id > a._id) ? -1 : 0)
+            )
+            files.sort((a, b) => (a._id > b._id) ?
+              1 :
+              ((b._id > a._id) ? -1 : 0)
+            )
+
+            let pages = directories.concat(files)
+
             self.tree.push({
               hasChildren: false,
-              pages: data
+              pages: pages
             })
             self.$store.dispatch('stopLoading')
           })
